@@ -1,20 +1,30 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import Button from '../common/Button';
 import Input from '../common/Input';
+import toast from 'react-hot-toast';
+import {
+  useGetUsersQuery,
+  usePostUserMutation,
+} from '../../features/api/apiSlice';
+import type { User } from '../../models/userModel';
+import { LoadingSpinner } from '../common/Loading';
+import ErrorPage from '../error/ErrorPage';
 
 export default function RegisterForm() {
   const { t } = useTranslation('auth');
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'customer',
+    role: 'customer' as 'customer' | 'vendor',
     agreeTerms: false,
-    newsletter: false,
   });
-
+  const { data: users, isLoading, error } = useGetUsersQuery();
+  const [postUser, { isLoading: isRegistering }] = usePostUserMutation();
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -22,22 +32,95 @@ export default function RegisterForm() {
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData({ ...formData, [name]: checked });
+    } else if (name === 'role') {
+      setFormData({ ...formData, [name]: value as 'customer' | 'vendor' });
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    let _findUser: User | undefined;
     e.preventDefault();
-    // Handle form validation and submission logic here
-    console.log(formData);
+    console.log('Form Data:', formData);
+    const emptyFields = Object.keys(formData).filter(
+      (key) => !formData[key as keyof typeof formData]
+    );
+    if (emptyFields.length > 0) {
+      toast.error(t('register.fillAllFields'));
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.error(t('register.passwordMismatch'));
+      return;
+    }
+
+    if (!formData.agreeTerms) {
+      toast.error(t('register.agreeTerms'));
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      toast.error(t('register.invalidEmail'));
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      toast.error(t('register.weakPassword'));
+      return;
+    }
+
+    try {
+      _findUser = users?.find((user) => user.email === formData.email);
+
+      if (_findUser) {
+        toast.error(t('register.userExists'));
+        return;
+      }
+      const { confirmPassword, agreeTerms, ...userData } = formData;
+      await postUser(userData).unwrap();
+
+      // Show success message
+      toast.success(t('register.success'));
+
+      // Reset form
+      setFormData({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        role: 'customer' as 'customer' | 'vendor',
+        agreeTerms: false,
+      });
+
+      // Navigate to login tab
+      navigate('/auth?tab=login');
+    } catch (error) {
+      toast.error(t('register.error'));
+    }
   };
+
+  if (isLoading) {
+    return (
+      <LoadingSpinner size="large" fullScreen text={t('register.loading')} />
+    );
+  }
+
+  if (error) {
+    return (
+      <ErrorPage
+        errorCode={500}
+        title={t('error.500.title')}
+        message={t('error.500.message')}
+      />
+    );
+  }
 
   return (
     <div className="px-2 sm:px-0">
       <p className="text-gray-600 mb-6 sm:mb-8 text-center text-sm sm:text-base">
-        There are many advantages to creating an account: the payment process is
-        faster, shipment tracking is possible and much more.
+        {t('register.intro')}
       </p>
       <form onSubmit={handleSubmit} className="w-full space-y-4 sm:space-y-6">
         <Input
@@ -138,7 +221,11 @@ export default function RegisterForm() {
         </p>
 
         <div className="pt-2">
-          <Button>{t('register.submitButton')}</Button>
+          <Button type="submit" disabled={isRegistering}>
+            {isRegistering
+              ? t('register.registering')
+              : t('register.submitButton')}
+          </Button>
         </div>
       </form>
     </div>
