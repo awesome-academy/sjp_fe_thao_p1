@@ -5,7 +5,6 @@ const initialState: User = {
   id: '',
   username: '',
   email: '',
-  password: '',
   role: 'customer',
 };
 

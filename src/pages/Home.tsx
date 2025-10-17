@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/auth?mode=login');
+      navigate('/auth?tab=login');
     }
   }, [isAuthenticated, navigate]);
   return (
