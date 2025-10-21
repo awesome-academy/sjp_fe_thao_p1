@@ -1,10 +1,86 @@
+import ProtectedRoute from '../components/common/ProtectedRoute';
+import HeroSection from '../components/home/HeroSection';
+import CategorySection from '../components/home/CategorySection';
+import ProductGrid from '../components/home/ProductGrid';
+
+import SafetyBanner from '../components/home/SafetyBanner';
+import PromotionalBanners from '../components/home/PromotionalBanners';
+import { useTranslation } from 'react-i18next';
+import {
+  useGetCategoriesQuery,
+  useGetProductsQuery,
+} from '../features/api/apiSlice';
+import { LoadingSpinner } from '../components/common/Loading';
+import { ServerErrorPage } from '../components/error';
+import { BestSellersSection, EditorPickSection } from '../components/home';
+
 export default function Home() {
+  const { t } = useTranslation('home');
+  const {
+    data: categoriesData,
+    isLoading: isLoadingCategories,
+    isError: isErrorCategories,
+  } = useGetCategoriesQuery();
+  const {
+    data: productsData,
+    isLoading: isLoadingProducts,
+    isError: isErrorProducts,
+  } = useGetProductsQuery();
+
+  if (isLoadingProducts || isLoadingCategories) {
+    return <LoadingSpinner />;
+  }
+
+  if (isErrorProducts || isErrorCategories) {
+    return <ServerErrorPage />;
+  }
+
+  const featuredProducts = productsData
+    ? productsData.filter((product) => product.tags?.includes('featured') || [])
+    : [];
+
+  const bestSellerProducts = productsData
+    ? productsData.filter(
+        (product) => product.tags?.includes('bestseller') || []
+      )
+    : [];
+
+  const editorPickProducts = productsData
+    ? productsData.filter(
+        (product) => product.tags?.includes('editorPicks') || []
+      )
+    : [];
+
   return (
-    <div className="max-w-7xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Home Page</h1>
-      <p className="text-lg text-gray-700">
-        This is the home page of your new React Router app.
-      </p>
-    </div>
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          {/* Hero Section */}
+          <HeroSection />
+          <CategorySection categories={categoriesData || []} />
+          {featuredProducts.length > 0 && (
+            <ProductGrid
+              title={t('featuredProducts')}
+              products={featuredProducts}
+            />
+          )}
+
+          {/* BestSellers Section */}
+          {bestSellerProducts.length > 0 && (
+            <BestSellersSection products={bestSellerProducts} />
+          )}
+
+          {/* EditorPick Section */}
+          {editorPickProducts.length > 0 && (
+            <EditorPickSection products={editorPickProducts} />
+          )}
+
+          {/* Health & Safety Banner */}
+          <SafetyBanner />
+          {/* Promotional Banners */}
+          <PromotionalBanners />
+        </div>
+      </div>
+    </ProtectedRoute>
   );
 }

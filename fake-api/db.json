@@ -1,0 +1,333 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Van",
+      "lastName": "Nguyen",
+      "email": "admin@example.com",
+      "password": "adminpassword",
+      "role": "admin",
+      "phone": "0987654321",
+      "address": {
+        "street": "123 ABC Street",
+        "city": "Quy Nhon",
+        "zipCode": "590000",
+        "country": "Vietnam"
+      }
+    },
+    {
+      "id": "2",
+      "firstName": "Thi",
+      "lastName": "Tran",
+      "email": "customer1@example.com",
+      "password": "customerpassword",
+      "role": "customer",
+      "phone": "0123456789",
+      "address": {
+        "street": "456 XYZ Street",
+        "city": "Quy Nhon",
+        "zipCode": "590000",
+        "country": "Vietnam"
+      }
+    },
+    {
+      "firstName": "Hồ Sỹ ",
+      "lastName": "Thảo",
+      "phoneNumber": "0838664246",
+      "username": "admin",
+      "email": "hosithao162200411@gmail.com",
+      "password": "123456789",
+      "role": "customer",
+      "id": "eb81"
+    },
+    {
+      "firstName": "Hồ Sỹ ",
+      "lastName": "Thảo đẹp trai",
+      "phoneNumber": "0838664246",
+      "username": "hồ Sỹ Thảo",
+      "email": "hosithao1622004111@gmail.com",
+      "password": "123456789",
+      "role": "customer",
+      "id": "617d"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Fruits & Vegetables",
+      "imageUrl": "/list02.png"
+    },
+    {
+      "id": "2",
+      "name": "Dairy & Pregnancy",
+      "imageUrl": "/list05.png"
+    },
+
+    {
+      "id": "3",
+      "name": "Beverages",
+      "imageUrl": "/list08.png"
+    },
+    {
+      "id": "4",
+      "name": "Meats & Seafood",
+      "imageUrl": "/list11.png"
+    },
+
+    {
+      "id": "5",
+      "name": "Biscuits & Snacks",
+      "imageUrl": "/list14.png"
+    },
+    {
+      "id": "6",
+      "name": "Breads & Bakery",
+      "imageUrl": "/list17.png"
+    },
+
+    {
+      "id": "7",
+      "name": "Breakfast & Dairy",
+      "imageUrl": "/list20.png"
+    },
+    {
+      "id": "8",
+      "name": "Frozen Foods",
+      "imageUrl": "/list23.png"
+    },
+    {
+      "id": "9",
+      "name": "Grocery & Staples",
+      "imageUrl": "/list26.png"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Great Value Rising Crust Frozen Supreme",
+      "imageUrl": "/Great Value Rising Crust Frozen Supreme.jpeg",
+      "salePercentage": 31,
+      "rating": 5,
+      "reviewCount": 120,
+      "price": 8.99,
+      "originalPrice": 12.99,
+      "inStock": true,
+      "categoryId": "8",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "2",
+      "name": "Simple Kitchen Fit Sliced Strawberries - 10oz",
+      "imageUrl": "/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg",
+      "salePercentage": 12,
+      "rating": 5,
+      "reviewCount": 85,
+      "price": 21.9,
+      "originalPrice": 24.99,
+      "inStock": true,
+      "categoryId": "1",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "3",
+      "name": "Red Baron Frozen Hand Tossed 4-Meat Pizza",
+      "imageUrl": "/Red Baron Frozen Hand Tossed 4-Meat Pizza.jpeg",
+      "salePercentage": 21,
+      "rating": 5,
+      "reviewCount": 95,
+      "price": 14.99,
+      "originalPrice": 18.99,
+      "inStock": true,
+      "categoryId": "8",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "4",
+      "name": "100 Percent Apple Juice - 64 fl oz Bottle",
+      "imageUrl": "/413.png",
+      "salePercentage": 92,
+      "rating": 5,
+      "reviewCount": 450,
+      "price": 0.5,
+      "originalPrice": 5.99,
+      "inStock": true,
+      "categoryId": "3",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "5",
+      "name": "Angel Soft Toilet Paper, 9Mega Rolls",
+      "imageUrl": "/372.png",
+      "salePercentage": 10,
+      "rating": 5,
+      "reviewCount": 320,
+      "price": 8.99,
+      "originalPrice": 9.99,
+      "inStock": true,
+      "categoryId": "9",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "6",
+      "name": "California Pizza Kitchen Margherita, Crispy Thin Crust",
+      "imageUrl": "/357.png",
+      "salePercentage": 17,
+      "rating": 5,
+      "reviewCount": 180,
+      "price": 14.99,
+      "originalPrice": 17.99,
+      "inStock": true,
+      "categoryId": "8",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "7",
+      "name": "Cantaloupe Melon Fresh Organic Cut",
+      "imageUrl": "/365.png",
+      "salePercentage": 42,
+      "rating": 4,
+      "reviewCount": 140,
+      "price": 2.45,
+      "originalPrice": 4.19,
+      "inStock": true,
+      "categoryId": "1",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "8",
+      "name": "Alcohol Grapefruit Plasma Sparkling Vodka Cocktail",
+      "imageUrl": "/440.png",
+      "salePercentage": 10,
+      "rating": 5,
+      "reviewCount": 95,
+      "price": 8.99,
+      "originalPrice": 9.99,
+      "inStock": true,
+      "categoryId": "9",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "9",
+      "name": "Vitamineramic aam sugar lyopheat electroyte",
+      "imageUrl": "/444.png",
+      "salePercentage": 44,
+      "rating": 4,
+      "reviewCount": 210,
+      "price": 4.99,
+      "originalPrice": 8.99,
+      "inStock": true,
+      "categoryId": "2",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "10",
+      "name": "Great Value Rising Crust Frozen Pizza, Supreme",
+      "imageUrl": "/Great Value Rising Crust Frozen Pizza, Supreme.jpeg",
+      "salePercentage": 31,
+      "rating": 5,
+      "reviewCount": 75,
+      "price": 8.99,
+      "originalPrice": 12.99,
+      "inStock": true,
+      "categoryId": "8",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "11",
+      "name": "Ocean Spray Pulp Free Orange Juice - 52 fl oz",
+      "imageUrl": "/Ocean Spray Pulp Free Orange Juice - 52 fl oz.jpeg",
+      "salePercentage": 22,
+      "rating": 4,
+      "reviewCount": 110,
+      "price": 14.12,
+      "originalPrice": 18.2,
+      "inStock": true,
+      "categoryId": "3",
+      "tags": ["featured", "bestseller"]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "productId": 101,
+      "userId": 2,
+      "rating": 5,
+      "comment": "The bananas are very delicious and fresh. I will continue to support the shop!",
+      "createdAt": "2025-10-12T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "productId": 102,
+      "userId": 2,
+      "rating": 4,
+      "comment": "The strawberries are a bit small but very sweet.",
+      "createdAt": "2025-10-13T14:30:00Z"
+    }
+  ],
+  "cart": [
+    {
+      "id": "2",
+      "userId": 2,
+      "items": [
+        {
+          "productId": 101,
+          "quantity": 2
+        },
+        {
+          "productId": 105,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "userId": 2,
+      "items": [
+        {
+          "productId": 102,
+          "name": "Dalat Strawberries",
+          "quantity": 1,
+          "price": 120000
+        }
+      ],
+      "totalAmount": 135000,
+      "status": "Completed",
+      "shippingAddress": {
+        "street": "456 XYZ Street",
+        "city": "Quy Nhon",
+        "zipCode": "590000",
+        "country": "Vietnam"
+      },
+      "createdAt": "2025-10-10T09:00:00Z"
+    }
+  ],
+  "productSuggestions": [
+    {
+      "id": "1",
+      "userId": 2,
+      "suggestion": "The shop should import Dak Lak avocados.",
+      "status": "Pending",
+      "createdAt": "2025-10-14T11:20:00Z"
+    }
+  ],
+  "chats": [
+    {
+      "id": "1",
+      "participants": [1, 2],
+      "messages": [
+        {
+          "senderId": 2,
+          "text": "Hello, can you advise me on the strawberry product?",
+          "timestamp": "2025-10-14T09:00:00Z"
+        },
+        {
+          "senderId": 1,
+          "text": "Hello, our strawberries are grade A, freshness guaranteed.",
+          "timestamp": "2025-10-14T09:01:00Z"
+        }
+      ]
+    }
+  ]
+}
